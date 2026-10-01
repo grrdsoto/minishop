@@ -1,0 +1,7 @@
+syntax = "proto3"
+
+package "github.com/grrdsoto/minishop";
+
+import "google/protobuf/timestamp.proto"
+
+enum 
