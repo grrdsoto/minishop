@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package payment.v1.payment;
+
+import "google/protobuf/timestamp.proto";
+

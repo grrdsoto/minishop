@@ -1,7 +1,21 @@
-syntax = "proto3"
+syntax = "proto3";
 
-package "github.com/grrdsoto/minishop";
+package inventory.v1.inventory;
 
-import "google/protobuf/timestamp.proto"
+import "google/protobuf/timestamp.proto";
 
-enum 
+message addToInventory {
+
+}
+message removeFromInventory{}
+
+message Item { 
+    string name = 1;
+    int32 id = 2;
+    string description = 3;
+    float price = 4;
+    int32 quantity = 5;
+}
+message Items {
+    repeated Item item = 1;
+}
