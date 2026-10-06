@@ -1,11 +1,11 @@
-//inventory <-> order <-> payment
-
 syntax = "proto3";
 
 package order.v1;
 
+option go_package = "./order";
+
 import "google/protobuf/timestamp.proto";
-import "common/v1/common.proto";
+
 
 service OrderService {
 
@@ -24,7 +24,7 @@ message Order {
     string customer_id = 2;
     repeated OrderItem items = 3;
     OrderStatus status = 4;
-    common.v1.Money total_amount = 5;
+    float total_amount = 5;
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp updated_at = 7;
 }
@@ -32,17 +32,17 @@ message Order {
 message OrderItem {
     string product_id = 1;
     int32 quantity = 2;
-    common.v1.Money unit_price = 3;
+    float unit_price = 3;
 }
 
 enum OrderStatus {
-    ORDER_STATUS_UNSPECIFIED = 1;
-    ORDER_STATUS_PENDING = 2;
-    ORDER_STATUS_STOCK_RESERVED = 3;
-    ORDER_STATUS_PAYMENT_PROCESSING = 4;
-    ORDER_STATUS_CONFIRMED = 5;
-    ORDER_STATUS_FAILED = 6;
-    ORDER_STATUS_CANCELLED = 7;
+    ORDER_STATUS_UNSPECIFIED = 0;
+    ORDER_STATUS_PENDING = 1;
+    ORDER_STATUS_STOCK_RESERVED = 2;
+    ORDER_STATUS_PAYMENT_PROCESSING = 3;
+    ORDER_STATUS_CONFIRMED = 4;
+    ORDER_STATUS_FAILED = 5;
+    ORDER_STATUS_CANCELLED = 6;
 }
 message PlaceOrderRequest {
         string customer_id = 1;
@@ -64,7 +64,7 @@ message WatchOrderStatusRequest {
 
 message OrderStatusUpdate {
     string order_id = 1;
-    OrderSetatus status = 2;
+    OrderStatus status = 2;
     google.protobuf.Timestamp updated_at = 3;
     string note = 4;
 }
